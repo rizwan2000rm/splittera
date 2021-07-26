@@ -45,8 +45,10 @@ export default function Example() {
                         <div className="-mr-2 flex items-center md:hidden">
                           <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                             <span className="sr-only">Open main menu</span>
-                            {/* <MenuIcon className="h-6 w-6" aria-hidden="true" /> */}
-                            <ion-icon name="menu"></ion-icon>
+                            <ion-icon
+                              // className="h-6 w-6"
+                              name="menu"
+                            ></ion-icon>
                           </Popover.Button>
                         </div>
                       </div>
@@ -98,8 +100,10 @@ export default function Example() {
                         <div className="-mr-2">
                           <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                             <span className="sr-only">Close main menu</span>
-                            {/* <XIcon className="h-6 w-6" aria-hidden="true" /> */}
-                            <ion-icon name="close"></ion-icon>
+                            <ion-icon
+                              // className="h-6 w-6"
+                              name="close"
+                            ></ion-icon>
                           </Popover.Button>
                         </div>
                       </div>
