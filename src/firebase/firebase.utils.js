@@ -3,12 +3,12 @@ import "firebase/firestore";
 import "firebase/auth";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyB6z1thEXdnNWKH4-xWvwsaVfxZDUe0F_I",
-  authDomain: "oreo-d7bc8.firebaseapp.com",
-  projectId: "oreo-d7bc8",
-  storageBucket: "oreo-d7bc8.appspot.com",
-  messagingSenderId: "623209188598",
-  appId: "1:623209188598:web:7a37dbee0e6d187761b0d7"
+  apiKey: "AIzaSyBqyB_QEe6Uj0BXDRS6OpgrISdP0U_fEpw",
+  authDomain: "oreo-e0436.firebaseapp.com",
+  projectId: "oreo-e0436",
+  storageBucket: "oreo-e0436.appspot.com",
+  messagingSenderId: "518701931556",
+  appId: "1:518701931556:web:3488def6c2040d31e18cb1",
 };
 
 firebase.initializeApp(firebaseConfig);
