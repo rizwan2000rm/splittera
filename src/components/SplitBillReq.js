@@ -1,6 +1,6 @@
 import React from "react";
 
-const SplitBill = () => {
+const SplitBillReq = () => {
   return (
     <div className="border max-w-sm h-full rounded-lg px-2 py-8 mx-auto">
       <img
@@ -40,4 +40,4 @@ const SplitBill = () => {
   );
 };
 
-export default SplitBill;
+export default SplitBillReq;

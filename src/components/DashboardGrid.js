@@ -1,5 +1,5 @@
 import React from "react";
-import SplitBill from "./SplitBill";
+import SplitBillReq from "./SplitBillReq";
 
 const DashboardGrid = () => {
   return (
@@ -9,7 +9,7 @@ const DashboardGrid = () => {
       <div className="bg-red-400 h-24 order-2">3</div>
       <div className="bg-blue-400 order-5">4</div>
       <div className="order-3 w-full h-full p-2">
-        <SplitBill />
+        <SplitBillReq />
       </div>
       <div className="bg-blue-400 order-6">6</div>
     </div>
