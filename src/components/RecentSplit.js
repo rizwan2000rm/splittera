@@ -26,36 +26,36 @@ const RecentSplit = () => {
             </svg>{" "}
           </div>
         </div>
-        <div className="flex mt-5 justify-between">
-          <img src="/images/pizza.png" alt="" className="h-24 lg:h-32" />
-          <div className="avatar-grid grid grid-cols-3 gap-1 place-items-center">
+        <div className="flex-col items-center md:flex-row flex mt-5 justify-between">
+          <img src="/images/pizza.png" alt="" className="h-32 w-32" />
+          <div className="avatar-grid mt-5 md:mt-0 grid grid-cols-3 gap-3 md:gap-1 place-items-center">
             <img
-              className="h-9 w-9 lg:h-12 lg:w-12 rounded-full shadow"
+              className="h-12 w-12 rounded-full shadow"
               src="https://i.pravatar.cc/300?img=1"
               alt=""
             />
             <img
-              className="h-9 w-9 lg:h-12 lg:w-12 rounded-full shadow"
+              className="h-12 w-12 rounded-full shadow"
               src="https://i.pravatar.cc/300?img=2"
               alt=""
             />
             <img
-              className="h-9 w-9 lg:h-12 lg:w-12 rounded-full shadow"
+              className="h-12 w-12 rounded-full shadow"
               src="https://i.pravatar.cc/300?img=3"
               alt=""
             />
             <img
-              className="h-9 w-9 lg:h-12 lg:w-12 rounded-full shadow"
+              className="h-12 w-12 rounded-full shadow"
               src="https://i.pravatar.cc/300?img=4"
               alt=""
             />
             <img
-              className="h-9 w-9 lg:h-12 lg:w-12 rounded-full shadow"
+              className="h-12 w-12 rounded-full shadow"
               src="https://i.pravatar.cc/300?img=5"
               alt=""
             />
             <img
-              className="h-9 w-9 lg:h-12 lg:w-12 rounded-full shadow"
+              className="h-12 w-12 rounded-full shadow"
               src="https://i.pravatar.cc/300?img=8"
               alt=""
             />

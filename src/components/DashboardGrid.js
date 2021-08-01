@@ -9,7 +9,7 @@ const DashboardGrid = () => {
       <div className="order-1 p-2">
         <SplitWith />
       </div>
-      <div className="p-6 order-4 w-full">
+      <div className="p-2 order-4 w-full">
         <RecentSplit />
       </div>
       <div className="bg-red-400 h-24 order-2">3</div>
