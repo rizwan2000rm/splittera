@@ -3,7 +3,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 export const Participate = () => {
-  const [persons, setPersons] = useState([
+  const [persons] = useState([
     {
       id: 1,
       name: "Kyle Foster",
