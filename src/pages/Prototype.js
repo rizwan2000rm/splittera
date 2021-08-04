@@ -1,11 +1,16 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 import DashboardGrid from "../components/DashboardGrid";
+import TopBar from "../components/TopBar";
 
 const Prototype = () => {
   return (
-    <div>
-      <h1>Prototype</h1>
-      <DashboardGrid />
+    <div className="flex h-screen">
+      <Navbar />
+      <div className="flex flex-col">
+        <TopBar />
+        <DashboardGrid />
+      </div>
     </div>
   );
 };
