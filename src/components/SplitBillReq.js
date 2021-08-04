@@ -2,7 +2,7 @@ import React from "react";
 
 const SplitBillReq = () => {
   return (
-    <div className="border max-w-sm h-full rounded-lg px-2 py-8 mx-auto">
+    <div className="border max-w-sm rounded-lg px-2 py-8 mx-auto">
       <img
         className="w-32 h-32 object-cover rounded-full mx-auto p-1 border-2 border-yellow-400"
         src="https://images.unsplash.com/photo-1552234994-66ba234fd567?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80"

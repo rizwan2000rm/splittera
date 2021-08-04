@@ -2,7 +2,7 @@ import React from "react";
 
 const SplitWith = () => {
   return (
-    <div className="w-96 p-3 rounded-3xl bg-gradient-to-br from-red-300 via-red-400 to-red-600">
+    <div className="max-w-sm p-3 rounded-3xl bg-gradient-to-br from-red-300 via-red-400 to-red-600">
       <div className="bg-white rounded-3xl p-3 flex flex-col">
         <img
           src="/images/pizza.png"
