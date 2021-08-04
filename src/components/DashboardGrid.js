@@ -4,10 +4,11 @@ import SplitBillReq from "./SplitBillReq";
 import SplitWith from "./SplitWith";
 import NearByFriends from "./NearByFriends";
 import PendingBills from "./PendingBills";
+import { Participate } from "./Participate";
 
 const DashboardGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 p-4 lg:grid-cols-3 ">
+    <div className="grid grid-cols-1  md:grid-cols-2 p-4 lg:grid-cols-3 ">
       <div className="order-1 p-2">
         <SplitWith />
       </div>
@@ -17,7 +18,9 @@ const DashboardGrid = () => {
       <div className="order-2 p-2">
         <NearByFriends />
       </div>
-      <div className="bg-blue-400 order-5">4</div>
+      <div className="p-2 order-5">
+        <Participate />
+      </div>
       <div className="order-3 w-full h-full p-2">
         <SplitBillReq />
       </div>

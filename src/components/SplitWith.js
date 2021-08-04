@@ -2,7 +2,7 @@ import React from "react";
 
 const SplitWith = () => {
   return (
-    <div className="max-w-sm p-3 rounded-3xl bg-gradient-to-br from-red-300 via-red-400 to-red-600">
+    <div className="max-w-sm p-3 rounded-3xl bg-gradient-to-br from-red-300 mx-auto via-red-400 to-red-600">
       <div className="bg-white rounded-3xl p-3 flex flex-col">
         <img
           src="/images/pizza.png"
@@ -59,21 +59,6 @@ const SplitWith = () => {
           <img
             className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
             src="https://i.pravatar.cc/300?img=6"
-            alt=""
-          />
-          <img
-            className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-            src="https://i.pravatar.cc/300?img=7"
-            alt=""
-          />
-          <img
-            className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-            src="https://i.pravatar.cc/300?img=8"
-            alt=""
-          />
-          <img
-            className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-            src="https://i.pravatar.cc/300?img=9"
             alt=""
           />
         </div>
