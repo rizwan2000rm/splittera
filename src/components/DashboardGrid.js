@@ -15,10 +15,10 @@ const DashboardGrid = () => {
       <div className="p-2 order-4 w-full">
         <RecentSplit />
       </div>
-      <div className="order-2 p-2">
+      <div className="order-5 p-2">
         <NearByFriends />
       </div>
-      <div className="p-2 order-5">
+      <div className="p-2 order-2">
         <Participate />
       </div>
       <div className="order-3 w-full h-full p-2">
