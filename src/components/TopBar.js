@@ -1,4 +1,5 @@
 import React from "react";
+import { signInWithGoogle } from "../firebase/firebase.utils";
 
 const TopBar = () => {
   return (
@@ -18,6 +19,12 @@ const TopBar = () => {
         <span className="bg-red-300 rounded-lg p-1 h-8 hover:opacity-80">
           <ion-icon name="notifications-outline"></ion-icon>
         </span>
+        <button
+          onClick={signInWithGoogle}
+          className="px-4 py-1 rounded-lg cursor-pointer bg-red-300 hover:opacity-80 font-medium"
+        >
+          LOGIN
+        </button>
       </div>
     </div>
   );
