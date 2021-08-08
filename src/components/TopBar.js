@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { signInWithGoogle } from "../firebase/firebase.utils";
 
 const TopBar = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    return setUser(null);
+  }, []);
+
   return (
     <div className="flex justify-between items-center w-full px-5 py-2">
       <h1>Hello Oreo</h1>
@@ -19,12 +25,24 @@ const TopBar = () => {
         <span className="bg-red-300 rounded-lg p-1 h-8 hover:opacity-80">
           <ion-icon name="notifications-outline"></ion-icon>
         </span>
-        <button
-          onClick={signInWithGoogle}
-          className="px-4 py-1 rounded-lg cursor-pointer bg-red-300 hover:opacity-80 font-medium"
-        >
-          LOGIN
-        </button>
+        {user === null ? (
+          <button
+            onClick={() =>
+              signInWithGoogle().then((results) =>
+                setUser(results.additionalUserInfo.profile)
+              )
+            }
+            className="px-4 py-1 rounded-lg cursor-pointer bg-red-300 hover:opacity-80 font-medium"
+          >
+            LOGIN
+          </button>
+        ) : (
+          <img
+            className="h-8 w-8 object-cover rounded-lg"
+            src={user.picture}
+            alt=""
+          />
+        )}
       </div>
     </div>
   );
