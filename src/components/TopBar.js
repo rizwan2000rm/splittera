@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { signInWithGoogle } from "../firebase/firebase.utils";
+import { signInWithGoogle, auth } from "../firebase/firebase.utils";
 
 const TopBar = () => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [showOptions, setShowOptions] = useState(false);
 
   useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setLoading(true);
+      if (user) {
+        setUser(user);
+      }
+      setLoading(false);
+    });
     return setUser(null);
   }, []);
 
   return (
     <div className="flex justify-between items-center w-full px-5 py-2">
-      <h1>Hello Oreo</h1>
+      {user ? (
+        <h1>Hello {user.displayName}</h1>
+      ) : (
+        <h1>Log in to start splitting</h1>
+      )}
       <div className="relative">
         <input
           type="text"
@@ -25,11 +38,15 @@ const TopBar = () => {
         <span className="bg-red-300 rounded-lg p-1 h-8 hover:opacity-80">
           <ion-icon name="notifications-outline"></ion-icon>
         </span>
-        {user === null ? (
+        {loading ? (
+          <div className="text-black">Loading...</div>
+        ) : user === null ? (
           <button
             onClick={() =>
               signInWithGoogle().then((results) =>
-                setUser(results.additionalUserInfo.profile)
+                auth.onAuthStateChanged((user) => {
+                  setUser(user);
+                })
               )
             }
             className="px-4 py-1 rounded-lg cursor-pointer bg-red-300 hover:opacity-80 font-medium"
@@ -38,10 +55,32 @@ const TopBar = () => {
           </button>
         ) : (
           <img
+            onClick={() => {
+              setShowOptions((prevState) => !prevState);
+            }}
             className="h-8 w-8 object-cover rounded-lg"
-            src={user.picture}
+            src={user.photoURL}
             alt=""
           />
+        )}
+
+        {showOptions && (
+          <button
+            onClick={() => {
+              auth
+                .signOut()
+                .then(() => {
+                  setUser(null);
+                  setShowOptions(false);
+                })
+                .catch((error) => {
+                  // An error happened.
+                });
+            }}
+            className="text-black absolute right-5 mt-20 border-2 border-gray-300 rounded shadow-lg p-2"
+          >
+            Log Out
+          </button>
         )}
       </div>
     </div>

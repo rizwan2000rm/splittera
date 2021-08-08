@@ -43,6 +43,6 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider);
 //   }
 
 //   return userRef;
-// };
+// // };
 
 export default firebase;
