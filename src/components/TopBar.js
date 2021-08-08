@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Popup from "reactjs-popup";
 import { signInWithGoogle, auth } from "../firebase/firebase.utils";
 
 const TopBar = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showOptions, setShowOptions] = useState(false);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -14,8 +14,25 @@ const TopBar = () => {
       }
       setLoading(false);
     });
+    console.log(user);
     return setUser(null);
   }, []);
+
+  const signOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        setUser(null);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const modalOverlayStyle = {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backdropFilter: "blur(1px)"
+  };
 
   return (
     <div className="flex justify-between items-center w-full px-5 py-2">
@@ -54,33 +71,66 @@ const TopBar = () => {
             LOGIN
           </button>
         ) : (
-          <img
-            onClick={() => {
-              setShowOptions((prevState) => !prevState);
-            }}
-            className="h-8 w-8 object-cover rounded-lg"
-            src={user.photoURL}
-            alt=""
-          />
-        )}
-
-        {showOptions && (
-          <button
-            onClick={() => {
-              auth
-                .signOut()
-                .then(() => {
-                  setUser(null);
-                  setShowOptions(false);
-                })
-                .catch((error) => {
-                  // An error happened.
-                });
-            }}
-            className="text-black absolute right-5 mt-20 border-2 border-gray-300 rounded shadow-lg p-2"
+          <Popup
+            trigger={
+              <img
+                className="h-8 w-8 object-cover rounded-lg"
+                src={user.photoURL}
+                alt=""
+              />
+            }
+            position="bottom right"
+            on="click"
+            closeOnDocumentClick
+            mouseLeaveDelay={300}
+            mouseEnterDelay={0}
+            arrow={false}
+            nested
           >
-            Log Out
-          </button>
+            <div className="w-36 my-2 border bg-white">
+              <Popup
+                trigger={
+                  <div className="px-4 py-2 text-gray-600 cursor-pointer hover:bg-red-300 hover:text-white">
+                    Profile
+                  </div>
+                }
+                overlayStyle={modalOverlayStyle}
+                modal
+              >
+                {(close) => (
+                  <div className="border bg-white">
+                    <button
+                      className="absolute right-0 top-0 h-12 w-12 text-3xl text-red-300 hover:opacity-80"
+                      onClick={close}
+                    >
+                      &times;
+                    </button>
+                    <div className="p-24 flex gap-12">
+                      <img
+                        className="rounded-full"
+                        src={user.photoURL}
+                        alt=""
+                      />
+                      <div className="my-2">
+                        <div className="font-bold text-xl text-gray-600">
+                          {user.displayName}
+                        </div>
+                        <div className="font-bold text-gray-600">
+                          {user.email}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </Popup>
+              <div
+                onClick={signOut}
+                className="px-4 py-2 text-gray-600 cursor-pointer hover:bg-red-300 hover:text-white"
+              >
+                Log Out
+              </div>
+            </div>
+          </Popup>
         )}
       </div>
     </div>
