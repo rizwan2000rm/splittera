@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../components/Header";
 import Feature from "../components/Feature";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "../features/counter/counterSlice";
+// import { useSelector, useDispatch } from "react-redux";
+// import { decrement, increment } from "../features/counter/counterSlice";
 
 const Home = () => {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
+  // const count = useSelector((state) => state.counter.value);
+  // const dispatch = useDispatch();
 
   return (
     <div>
