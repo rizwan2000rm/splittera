@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -8,26 +9,49 @@ const Navbar = () => {
         src="/images/logo.svg"
         alt=""
       />
-      <div className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold bg-red-300 text-white">
+      <NavLink
+        to="/prototype/"
+        activeClassName="bg-red-300 text-white"
+        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold "
+      >
         <ion-icon name="home"></ion-icon>
         <span className="hidden lg:block">Dashboard</span>
-      </div>
-      <div className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold">
+      </NavLink>
+      <NavLink
+        to="/prototype/splitreqs"
+        activeClassName="bg-red-300 text-white"
+        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer  hover:text-white hover:font-bold"
+      >
+        <ion-icon name="home"></ion-icon>
+        <span className="hidden lg:block"> Requests</span>
+      </NavLink>
+      <NavLink
+        to="/prototype/"
+        exact
+        activeClassName="bg-red-300 text-white"
+        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold"
+      >
         <ion-icon name="home"></ion-icon>
         <span className="hidden lg:block">Dashboard</span>
-      </div>
-      <div className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold">
+      </NavLink>
+      <NavLink
+        to="/prototype/"
+        exact
+        activeClassName="bg-red-300 text-white"
+        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold"
+      >
         <ion-icon name="home"></ion-icon>
         <span className="hidden lg:block">Dashboard</span>
-      </div>
-      <div className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold">
+      </NavLink>
+      <NavLink
+        exact
+        to="/prototype/"
+        activeClassName="bg-red-300 text-white"
+        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold"
+      >
         <ion-icon name="home"></ion-icon>
         <span className="hidden lg:block">Dashboard</span>
-      </div>
-      <div className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold">
-        <ion-icon name="home"></ion-icon>
-        <span className="hidden lg:block">Dashboard</span>
-      </div>
+      </NavLink>
     </div>
   );
 };
