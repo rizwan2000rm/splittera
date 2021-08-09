@@ -44,13 +44,16 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const getBills = async () => {
+export const getBills = async (email) => {
   const billsArray = [];
   const billsRef = db.collection("bills");
-  const snapshot = await billsRef.get();
+  const snapshot = await billsRef
+    .where("userEmails", "array-contains", email)
+    .get();
   snapshot.forEach((doc) => {
     billsArray.push({ id: doc.id, ...doc.data() });
   });
+  console.log(billsArray);
 
   return billsArray;
 };

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import ActiveSplitRequest from "../components/ActiveSplitRequest";
 
-import { getBills } from "../firebase/firebase.utils";
+import { getBills, auth } from "../firebase/firebase.utils";
 
 const SplitRequests = () => {
   const [requests, setRequests] = useState([]);
   const [activeRequest, setActiveRequest] = useState(null);
 
   useEffect(() => {
-    getBills().then((bills) => {
-      setRequests(bills);
-      setActiveRequest(bills[0]);
+    auth.onAuthStateChanged((user) => {
+      if (user.email) {
+        getBills(user.email).then((bills) => {
+          setRequests(bills);
+          setActiveRequest(bills[0]);
+        });
+      }
     });
   }, []);
 
