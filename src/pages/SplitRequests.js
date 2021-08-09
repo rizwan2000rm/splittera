@@ -3,24 +3,6 @@ import ActiveSplitRequest from "../components/ActiveSplitRequest";
 
 import { getBills } from "../firebase/firebase.utils";
 
-const dummyRequests = [
-  {
-    name: "Sagar Restaurant",
-  },
-  {
-    name: "Ta'am Restaurant",
-  },
-  {
-    name: "Kosher Restaurant",
-  },
-  {
-    name: "Afzal Restaurant",
-  },
-  {
-    name: "McDonalds",
-  },
-];
-
 const SplitRequests = () => {
   const [requests, setRequests] = useState([]);
   const [activeRequest, setActiveRequest] = useState(null);
