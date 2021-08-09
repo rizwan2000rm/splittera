@@ -9,13 +9,13 @@ const PendingBills = () => {
     <div className="max-w-sm  px-2  mx-auto">
       <h1 className="text-xl font-medium text-gray-700">Pending Bills</h1>
 
-      <div className="border px-2  mt-5 rounded-lg py-8 flex flex-col">
-        <div className="flex justify-between items-center  py-2">
+      <div className="border p-4 mt-5 rounded-lg flex flex-col">
+        <div className="flex justify-between items-center pb-4">
           <div>
             <h1 className="font-bold">Grill Cafe</h1>
             <p>Total payment $380.60</p>
 
-            <div className="flex">
+            <div className="flex mt-2">
               <img
                 className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
                 src="https://i.pravatar.cc/300?img=1"
@@ -42,7 +42,7 @@ const PendingBills = () => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center py-2">
+        <div className="flex justify-between items-center pt-4">
           <div>
             <h1 className="font-bold">Pizzeria</h1>
             <p>Total payment $4440.00</p>

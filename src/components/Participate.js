@@ -6,21 +6,21 @@ export const Participate = () => {
   const [persons] = useState([
     {
       id: 1,
-      name: "Kyle Foster",
+      name: "Kyle Foster"
     },
     {
       id: 2,
-      name: "Salik Ansari",
+      name: "Salik Ansari"
     },
     { id: 3, name: "Rizwan Memon" },
     {
       id: 4,
-      name: "Shaista Shaikh",
+      name: "Shaista Shaikh"
     },
     {
       id: 5,
-      name: "John Doe",
-    },
+      name: "John Doe"
+    }
   ]);
 
   return (
@@ -48,17 +48,17 @@ export const Participate = () => {
                     backgroundColor: "#EF4444",
                     borderColor: "white",
                     boxShadow: "1px 2px 5px gray",
-                    borderWidth: "3px",
+                    borderWidth: "3px"
                   }}
                   trackStyle={{
-                    backgroundColor: "#EF4444",
+                    backgroundColor: "#EF4444"
                   }}
                 />
               </div>
             </div>
           );
         })}
-        <button className="bg-gradient-to-br from-red-300 to-red-600 font-bold text-white py-2 px-5 rounded-lg mx-auto">
+        <button className="mx-auto px-6 py-3 w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80">
           Send Bill
         </button>
       </div>
