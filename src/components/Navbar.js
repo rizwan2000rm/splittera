@@ -1,5 +1,11 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import Popup from "reactjs-popup";
+
+const modalOverlayStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  backdropFilter: "blur(1px)",
+};
 
 const Navbar = () => {
   return (
@@ -43,15 +49,58 @@ const Navbar = () => {
         <ion-icon name="home"></ion-icon>
         <span className="hidden lg:block">Dashboard</span>
       </NavLink>
-      <NavLink
-        exact
-        to="/prototype/"
-        activeClassName="bg-red-300 text-white"
-        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold"
+
+      <Popup
+        trigger={
+          <button>
+            <NavLink
+              exact
+              to="/prototype/"
+              activeClassName="bg-red-300 text-white"
+              className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer text-gray-600 hover:bg-red-300 hover:text-white hover:font-bold"
+            >
+              <ion-icon name="home"></ion-icon>
+              <span className="hidden lg:block">Dashboard</span>
+            </NavLink>
+          </button>
+        }
+        overlayStyle={modalOverlayStyle}
+        modal
+        position="center center"
       >
-        <ion-icon name="home"></ion-icon>
-        <span className="hidden lg:block">Dashboard</span>
-      </NavLink>
+        <div className="border bg-white">
+          <form className="flex flex-col mx-10 my-10">
+            <input
+              type="text"
+              placeholder="Hotel"
+              className="w-full my-5 pr-10 px-4 h-10 bg-gray-100 rounded-xl shadow-sm focus:outline-none focus:opacity-80 text-sm"
+            />
+            <input
+              type="text"
+              placeholder="Oreo"
+              className="w-full my-5 pr-10 px-4 h-10 bg-gray-100 rounded-xl shadow-sm focus:outline-none focus:opacity-80 text-sm"
+            />
+            <input
+              type="text"
+              placeholder="Total"
+              className="w-full my-5 pr-10 px-4 h-10 bg-gray-100 rounded-xl shadow-sm focus:outline-none focus:opacity-80 text-sm"
+            />
+            <input
+              type="text"
+              placeholder="Total"
+              className="w-full my-5 pr-10 px-4 h-10 bg-gray-100 rounded-xl shadow-sm focus:outline-none focus:opacity-80 text-sm"
+            />
+            <input
+              type="text"
+              placeholder="Total"
+              className="w-full my-5 pr-10 px-4 h-10 bg-gray-100 rounded-xl shadow-sm focus:outline-none focus:opacity-80 text-sm"
+            />
+            <button className="px-6 py-3 w-32 my-10 mx-auto rounded-lg bg-blue-400 text-white text-sm hover:opacity-80">
+              Split Now
+            </button>
+          </form>
+        </div>
+      </Popup>
     </div>
   );
 };
