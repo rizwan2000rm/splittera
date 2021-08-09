@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
-import { signInWithGoogle, auth } from "../firebase/firebase.utils";
+import {
+  signInWithGoogle,
+  auth,
+  createUserProfileDocument,
+} from "../firebase/firebase.utils";
 
 const TopBar = () => {
   const [user, setUser] = useState(null);
@@ -64,6 +68,9 @@ const TopBar = () => {
               signInWithGoogle().then((results) =>
                 auth.onAuthStateChanged((user) => {
                   setUser(user);
+                  createUserProfileDocument(user, {
+                    photoURL: user.photoURL,
+                  });
                 })
               )
             }
