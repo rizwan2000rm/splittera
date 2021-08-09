@@ -16,6 +16,7 @@ const TopBar = () => {
     });
     console.log(user);
     return setUser(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const signOut = () => {
