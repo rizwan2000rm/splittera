@@ -44,23 +44,12 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const getBills = async (email) => {
-  const billsArray = [];
-  const billsRef = db.collection("bills");
-  const snapshot = await billsRef
-    .where("userEmails", "array-contains", email)
-    .get();
-  snapshot.forEach((doc) => {
-    billsArray.push({ id: doc.id, ...doc.data() });
-  });
-  console.log(billsArray);
-
-  return billsArray;
+export const getBills = (email) => {
+  return db.collection("bills").where("userEmails", "array-contains", email);
 };
 
 export const addBill = async (vendor, amount, userEmails, authUser) => {
   const splitAmount = amount / (userEmails.length + 1);
-
   if (authUser) {
     return db.collection("bills").add({
       createdAt: firebase.firestore.Timestamp.now(),
@@ -70,9 +59,21 @@ export const addBill = async (vendor, amount, userEmails, authUser) => {
       users: [...userEmails, authUser.email].map((userEmail) => ({
         amount: splitAmount,
         email: userEmail,
+        paid: false,
       })),
     });
   }
+};
+
+export const getBill = async (billId) => {
+  console.log(billId);
+  return db.collection("bills").doc(billId).get();
+};
+
+export const payBill = async (updatedUsers, billId) => {
+  return db.collection("bills").doc(billId).update({
+    users: updatedUsers,
+  });
 };
 
 export default firebase;

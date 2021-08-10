@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { auth } from "../firebase/firebase.utils";
-
-const ActiveSplitRequest = ({ activeRequest }) => {
+import React, { useState, useEffect, useContext } from "react";
+import AuthUserContext from "../context/AuthUserContext";
+import { auth, getBill, payBill } from "../firebase/firebase.utils";
+import { ToastContainer, toast } from "react-toastify";
+const ActiveSplitRequest = ({ activeRequest, history }) => {
   const [mySplit, setMySplit] = useState(null);
+  const { authUser } = useContext(AuthUserContext);
 
   useEffect(() => {
     setMySplit(() => {
@@ -14,6 +16,17 @@ const ActiveSplitRequest = ({ activeRequest }) => {
 
   return (
     <div className=" max-w-sm">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="rounded-lg px-2 py-8 mt-5">
         <img
           className="w-32 h-32 object-cover rounded-full mx-auto p-1 border-2 border-yellow-400"
@@ -42,12 +55,52 @@ const ActiveSplitRequest = ({ activeRequest }) => {
           </div>
         </div>
         <div className="px-8 pt-4 flex gap-4">
-          <button className="px-6 py-3 w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80">
-            Decline
-          </button>
-          <button className="px-6 py-3 w-1/2 rounded-lg bg-blue-400 text-white text-sm hover:opacity-80">
-            Accept
-          </button>
+          {!history && (
+            <>
+              <button className="px-6 py-3 w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80">
+                Decline
+              </button>
+              <button
+                onClick={async () => {
+                  //Getting the bill with id of the activeRequest bill
+                  const bill = await getBill(activeRequest.id);
+
+                  //Updating the field paid for the authenticated user as true and update the array of users
+                  //Wrote the logic for updating boolean field because firebase does allow to update array of objects
+                  //REF: https://stackoverflow.com/questions/63679460/how-to-update-an-array-of-maps-objects-on-firestore-in-angular-or-angularfires
+                  const updatedUsers = bill.data().users.map((user) => {
+                    if (user.email !== authUser.email) {
+                      return user;
+                    }
+                    return {
+                      ...user,
+                      paid: true,
+                    };
+                  });
+
+                  //Updating the bill in firebase which updates the whole document
+                  payBill(updatedUsers, activeRequest.id)
+                    .then(() => {
+                      toast.success("Payment Successful", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                      });
+                    })
+                    .catch((err) => {
+                      console.log("error");
+                    });
+                }}
+                className="px-6 py-3 w-1/2 rounded-lg bg-blue-400 text-white text-sm hover:opacity-80"
+              >
+                Accept
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

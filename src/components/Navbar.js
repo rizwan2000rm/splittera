@@ -148,6 +148,14 @@ const Navbar = () => {
         <ion-icon name="home"></ion-icon>
         <span className="hidden lg:block"> Requests</span>
       </NavLink>
+      <NavLink
+        to="/prototype/history"
+        activeClassName="bg-red-300 text-white"
+        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
+      >
+        <ion-icon name="home"></ion-icon>
+        <span className="hidden lg:block">History</span>
+      </NavLink>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import DashboardGrid from "../components/DashboardGrid";
 import TopBar from "../components/TopBar";
 import { Switch, Route } from "react-router-dom";
 import SplitRequests from "./SplitRequests";
+import History from "./History";
 
 const Prototype = () => {
   return (
@@ -16,6 +17,7 @@ const Prototype = () => {
         <Switch>
           <Route path="/prototype/" exact component={DashboardGrid} />
           <Route path="/prototype/splitreqs" component={SplitRequests} />
+          <Route path="/prototype/history" component={History} />
         </Switch>
       </div>
     </div>

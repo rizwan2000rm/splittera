@@ -3,7 +3,7 @@ import ActiveSplitRequest from "../components/ActiveSplitRequest";
 import AuthUserContext from "../context/AuthUserContext";
 import { getBills } from "../firebase/firebase.utils";
 
-const SplitRequests = () => {
+const History = () => {
   const [requests, setRequests] = useState([]);
   const [activeRequest, setActiveRequest] = useState(null);
   const { authUser } = useContext(AuthUserContext);
@@ -19,12 +19,12 @@ const SplitRequests = () => {
           };
         });
         setRequests(() => {
-          //Filtering bills for the users which contain paid as false
+          //Filtering bills for the users which contain paid as true
           return newBills.filter((bill) => {
             const mySplit = bill.users.find(
               (user) => user.email === authUser.email
             );
-            return !mySplit.paid;
+            return mySplit.paid;
           });
         });
       });
@@ -33,10 +33,6 @@ const SplitRequests = () => {
 
   useEffect(() => {
     setActiveRequest(requests[0]);
-  }, [requests]);
-
-  useEffect(() => {
-    console.log(requests);
   }, [requests]);
 
   return (
@@ -64,10 +60,12 @@ const SplitRequests = () => {
         ))}
       </div>
       <div className="active-split ">
-        {activeRequest && <ActiveSplitRequest activeRequest={activeRequest} />}
+        {activeRequest && (
+          <ActiveSplitRequest history={true} activeRequest={activeRequest} />
+        )}
       </div>
     </div>
   );
 };
 
-export default SplitRequests;
+export default History;
