@@ -1,22 +1,25 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AuthUserContextProvider } from "./context/AuthUserContext";
 import Home from "./pages/Home";
 import Prototype from "./pages/Prototype";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/prototype">
-            <Prototype />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <AuthUserContextProvider>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/prototype">
+              <Prototype />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </AuthUserContextProvider>
   );
 }
 

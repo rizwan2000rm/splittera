@@ -58,4 +58,21 @@ export const getBills = async (email) => {
   return billsArray;
 };
 
+export const addBill = async (vendor, amount, userEmails, authUser) => {
+  const splitAmount = amount / (userEmails.length + 1);
+
+  if (authUser) {
+    return db.collection("bills").add({
+      createdAt: firebase.firestore.Timestamp.now(),
+      name: vendor,
+      totalAmount: amount,
+      userEmails: [...userEmails, authUser.email],
+      users: [...userEmails, authUser.email].map((userEmail) => ({
+        amount: splitAmount,
+        email: userEmail,
+      })),
+    });
+  }
+};
+
 export default firebase;

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Popup from "reactjs-popup";
+import AuthUserContext from "../context/AuthUserContext";
 import {
   signInWithGoogle,
   auth,
@@ -7,6 +8,7 @@ import {
 } from "../firebase/firebase.utils";
 
 const TopBar = () => {
+  const { setAuthUser } = useContext(AuthUserContext);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,12 +17,12 @@ const TopBar = () => {
       setLoading(true);
       if (user) {
         setUser(user);
+        setAuthUser(user);
       }
       setLoading(false);
     });
-    console.log(user);
     return setUser(null);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const signOut = () => {
@@ -28,6 +30,7 @@ const TopBar = () => {
       .signOut()
       .then(() => {
         setUser(null);
+        setAuthUser(null);
       })
       .catch((error) => {
         console.log(error);
@@ -68,6 +71,7 @@ const TopBar = () => {
               signInWithGoogle().then((results) =>
                 auth.onAuthStateChanged((user) => {
                   setUser(user);
+                  setAuthUser(user);
                   createUserProfileDocument(user, {
                     photoURL: user.photoURL,
                   });
