@@ -54,6 +54,8 @@ export const addBill = async (vendor, amount, userEmails, authUser) => {
     return db.collection("bills").add({
       createdAt: firebase.firestore.Timestamp.now(),
       name: vendor,
+      creatorEmail: authUser.email,
+      creatorId: authUser.uid,
       totalAmount: amount,
       userEmails: [...userEmails, authUser.email],
       users: [...userEmails, authUser.email].map((userEmail) => ({
@@ -74,6 +76,20 @@ export const payBill = async (updatedUsers, billId) => {
   return db.collection("bills").doc(billId).update({
     users: updatedUsers,
   });
+};
+
+export const declineBill = async (billId, authUser, updatedUsers) => {
+  return db
+    .collection("bills")
+    .doc(billId)
+    .update({
+      userEmails: firebase.firestore.FieldValue.arrayRemove(authUser.email),
+      users: updatedUsers,
+    });
+};
+
+export const getUserById = async (creatorId) => {
+  return db.collection("users").doc(creatorId).get();
 };
 
 export default firebase;

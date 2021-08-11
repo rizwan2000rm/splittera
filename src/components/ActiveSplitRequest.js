@@ -1,9 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthUserContext from "../context/AuthUserContext";
-import { auth, getBill, payBill } from "../firebase/firebase.utils";
+import {
+  auth,
+  payBill,
+  declineBill,
+  getUserById,
+} from "../firebase/firebase.utils";
 import { ToastContainer, toast } from "react-toastify";
 const ActiveSplitRequest = ({ activeRequest, history }) => {
   const [mySplit, setMySplit] = useState(null);
+  const [creatorName, setCreatorName] = useState(null);
   const { authUser } = useContext(AuthUserContext);
 
   useEffect(() => {
@@ -12,7 +18,16 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
         return user.email === auth.currentUser.email;
       }).amount;
     });
-  }, [activeRequest]);
+
+    getUserById(activeRequest.creatorId).then((user) => {
+      setCreatorName(() => {
+        if (authUser.uid === activeRequest.creatorId) {
+          return "You";
+        }
+        return user.data().displayName;
+      });
+    });
+  }, [activeRequest, authUser.uid]);
 
   return (
     <div className=" max-w-sm">
@@ -37,8 +52,8 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
           Hey {auth.currentUser && auth.currentUser.displayName}
         </h1>
         <p className="text-center mx-auto px-8 text-sm pt-2">
-          <span className="font-bold">Rakib</span> requested you a split bill
-          payment of{" "}
+          <span className="font-bold">{creatorName && creatorName}</span>{" "}
+          requested you a split bill payment of{" "}
           <span className="font-medium text-yellow-400">${mySplit}</span> from{" "}
           <span className="font-bold">{activeRequest.name}</span>
         </p>
@@ -57,18 +72,45 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
         <div className="px-8 pt-4 flex gap-4">
           {!history && (
             <>
-              <button className="px-6 py-3 w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80">
+              <button
+                onClick={async () => {
+                  //Removing the authenticated user from the userEmails array and users array
+                  const updatedUsers = activeRequest.users
+                    .filter((user) => user.email !== authUser.email)
+                    .map((user) => {
+                      console.log(activeRequest.users.length);
+                      return {
+                        ...user,
+                        amount:
+                          activeRequest.totalAmount /
+                          (activeRequest.users.length - 1),
+                      };
+                    });
+
+                  declineBill(activeRequest.id, authUser, updatedUsers).then(
+                    () => {
+                      toast.error("Payment Declined", {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                      });
+                    }
+                  );
+                }}
+                className="px-6 py-3 w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80"
+              >
                 Decline
               </button>
               <button
                 onClick={async () => {
-                  //Getting the bill with id of the activeRequest bill
-                  const bill = await getBill(activeRequest.id);
-
                   //Updating the field paid for the authenticated user as true and update the array of users
                   //Wrote the logic for updating boolean field because firebase does allow to update array of objects
                   //REF: https://stackoverflow.com/questions/63679460/how-to-update-an-array-of-maps-objects-on-firestore-in-angular-or-angularfires
-                  const updatedUsers = bill.data().users.map((user) => {
+                  const updatedUsers = activeRequest.users.map((user) => {
                     if (user.email !== authUser.email) {
                       return user;
                     }
