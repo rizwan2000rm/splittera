@@ -4,6 +4,7 @@ import { AuthUserContextProvider } from "./context/AuthUserContext";
 import Home from "./pages/Home";
 import Prototype from "./pages/Prototype";
 import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -14,9 +15,7 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/prototype">
-              <Prototype />
-            </Route>
+            <ProtectedRoute path="/prototype" component={Prototype} />
             <Route path="/login">
               <Login />
             </Route>

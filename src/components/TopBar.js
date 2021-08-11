@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Popup from "reactjs-popup";
 import AuthUserContext from "../context/AuthUserContext";
+import { useHistory } from "react-router";
 import {
   signInWithGoogle,
   auth,
@@ -11,6 +12,7 @@ const TopBar = () => {
   const { setAuthUser } = useContext(AuthUserContext);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -31,6 +33,7 @@ const TopBar = () => {
       .then(() => {
         setUser(null);
         setAuthUser(null);
+        history.push("/");
       })
       .catch((error) => {
         console.log(error);
