@@ -8,11 +8,16 @@ import {
   getUsersByEmail,
 } from "../firebase/firebase.utils";
 import { ToastContainer, toast } from "react-toastify";
+import Popup from "reactjs-popup";
 const ActiveSplitRequest = ({ activeRequest, history }) => {
   const [mySplit, setMySplit] = useState(null);
   const [creatorName, setCreatorName] = useState(null);
   const [splitters, setSplitters] = useState([]);
   const { authUser } = useContext(AuthUserContext);
+  const modalOverlayStyle = {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backdropFilter: "blur(1px)",
+  };
 
   useEffect(() => {
     setMySplit(() => {
@@ -163,11 +168,43 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
           {splitters &&
             splitters.map((splitter) => {
               return (
-                <img
-                  className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-                  src={splitter.photoURL}
-                  alt="avatar"
-                />
+                <Popup
+                  overlayStyle={modalOverlayStyle}
+                  modal
+                  trigger={(close) => (
+                    <img
+                      className="h-12 w-12 rounded-full  border-white cursor-pointer border-2 -mr-3 shadow"
+                      src={splitter.photoURL}
+                      alt="avatar"
+                    />
+                  )}
+                >
+                  {(close) => (
+                    <div className="border bg-white">
+                      <button
+                        className="absolute right-0 top-0 h-12 w-12 text-3xl text-red-300 hover:opacity-80"
+                        onClick={close}
+                      >
+                        &times;
+                      </button>
+                      <div className="p-24 flex gap-12">
+                        <img
+                          className="rounded-full"
+                          src={splitter.photoURL}
+                          alt=""
+                        />
+                        <div className="my-2">
+                          <div className="font-bold text-xl text-gray-600">
+                            {splitter.displayName}
+                          </div>
+                          <div className="font-bold text-gray-600">
+                            {splitter.email}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </Popup>
               );
             })}
         </div>
