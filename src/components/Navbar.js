@@ -35,6 +35,15 @@ const Navbar = () => {
         src="/images/logo.svg"
         alt=""
       />
+      <NavLink
+        exact
+        to="/prototype/"
+        activeClassName="bg-red-300 text-white"
+        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
+      >
+        <ion-icon name="home"></ion-icon>
+        <span className="hidden lg:block">Dashboard</span>
+      </NavLink>
       <Popup
         trigger={
           <button>
@@ -131,15 +140,7 @@ const Navbar = () => {
           </div>
         )}
       </Popup>
-      <NavLink
-        exact
-        to="/prototype/"
-        activeClassName="bg-red-300 text-white"
-        className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
-      >
-        <ion-icon name="home"></ion-icon>
-        <span className="hidden lg:block">Dashboard</span>
-      </NavLink>
+
       <NavLink
         to="/prototype/splitreqs"
         activeClassName="bg-red-300 text-white"

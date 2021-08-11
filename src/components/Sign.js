@@ -1,5 +1,15 @@
-import React from "react";
-const Login = () => {
+import React, { useContext } from "react";
+import { useHistory } from "react-router";
+import AuthUserContext from "../context/AuthUserContext";
+import {
+  auth,
+  createUserProfileDocument,
+  signInWithGoogle,
+} from "../firebase/firebase.utils";
+
+const Sign = () => {
+  const { setAuthUser } = useContext(AuthUserContext);
+  const history = useHistory();
   return (
     <div>
       <section className="flex flex-col items-center h-screen md:flex-row ">
@@ -67,8 +77,21 @@ const Login = () => {
             <hr className="w-full my-6 border-blueGray-300" />
             <div className="flex justify-enter">
               <button
-                type="button"
-                className="inline-flex w-full px-20 py-3 font-semibold text-black transition duration-500 ease-in-out transform bg-white border rounded-lg border-blueGray-300 hover:bg-black hover:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 "
+                onClick={() => {
+                  signInWithGoogle().then((results) =>
+                    auth.onAuthStateChanged((user) => {
+                      //setUser(user);
+                      setAuthUser(user);
+                      createUserProfileDocument(user, {
+                        photoURL: user.photoURL,
+                      });
+                      history.push("/prototype");
+                    })
+                  );
+                }}
+                // className="px-4 py-1 rounded-lg cursor-pointer bg-red-300 hover:opacity-80 font-medium"
+                // type="button"
+                className=" w-full flex py-3 justify-center font-semibold text-black transition duration-500 ease-in-out transform bg-white border rounded-lg border-blueGray-300 hover:bg-black hover:text-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 "
               >
                 <div className="flex items-center justify-center">
                   <svg
@@ -144,4 +167,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Sign;

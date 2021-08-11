@@ -150,7 +150,7 @@ export default function Example() {
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <Link
-                    to="/prototype"
+                    to="/login"
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md bg-red-400 text-white text-sm hover:opacity-80 md:py-4 md:text-lg md:px-10"
                   >
                     Get started
