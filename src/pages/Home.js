@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Feature from "../components/Feature";
+
 // import { useSelector, useDispatch } from "react-redux";
 // import { decrement, increment } from "../features/counter/counterSlice";
 
@@ -12,6 +13,7 @@ const Home = () => {
     <div>
       <Header />
       <Feature />
+
       {/* <div>
         <div>
           <button

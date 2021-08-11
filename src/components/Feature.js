@@ -8,29 +8,29 @@
 
 const features = [
   {
-    name: "Competitive exchange rates",
+    name: "Easy to split bill",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: "analytics"
+      "Calculating the right amounts of money and the transactions (who pays to whom how much) to clear a group's shared costs and to settle debts for payback can be tedious task - often only solved with the help of spreadsheets. It even becomes more complicated when one or more community spendings are not shared by the whole group (e.g. one friend did not want to join the group for the museum trip paid by another friend for everyone).",
+    icon: "cash",
   },
   {
-    name: "No hidden fees",
+    name: "Easy to monitor",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: "flash"
+      "Everything happens in the browser without the need for the installation of an App on mobile phones. It is our mission to save groups in which everyone paid some bills from arguments and wasting time after the fun is over.",
+    icon: "calculator",
   },
   {
-    name: "Transfers are instant",
+    name: "Organize expenses",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: "flash"
+      "Split expenses with any group: trips, housemates, friends, and family",
+    icon: "flash",
   },
   {
     name: "Mobile notifications",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: "analytics"
-  }
+    icon: "mail",
+  },
 ];
 
 export default function Example() {
@@ -38,16 +38,16 @@ export default function Example() {
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+          {/* <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
             Transactions
-          </h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          </h2> */}
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-700 sm:text-4xl">
             A better way to send money
           </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+          {/* <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
             voluptatum cupiditate veritatis in accusamus quisquam.
-          </p>
+          </p> */}
         </div>
 
         <div className="mt-10">
@@ -55,20 +55,20 @@ export default function Example() {
             {features.map((feature) => (
               <div key={feature.name} className="relative">
                 <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-red-400 text-white">
                     <ion-icon
                       name={feature.icon}
                       aria-hidden="true"
                       // className="h-6 w-6"
                     />
                   </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                  <p className="ml-16 text-lg leading-6 font-medium text-gray-700">
                     {feature.name}
                   </p>
                 </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">
+                {/* <dd className="mt-2 ml-16 text-base text-gray-500">
                   {feature.description}
-                </dd>
+                </dd> */}
               </div>
             ))}
           </dl>

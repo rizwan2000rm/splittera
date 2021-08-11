@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthUserContextProvider } from "./context/AuthUserContext";
 import Home from "./pages/Home";
 import Prototype from "./pages/Prototype";
+import Login from "./pages/Login";
 
 function App() {
   return (
+<<<<<<< HEAD
     <AuthUserContextProvider>
       <Router>
         <div className="App">
@@ -20,6 +22,23 @@ function App() {
         </div>
       </Router>
     </AuthUserContextProvider>
+=======
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/prototype">
+            <Prototype />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+>>>>>>> afdd30e... updated UI
   );
 }
 
