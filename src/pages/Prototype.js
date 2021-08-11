@@ -9,7 +9,7 @@ import History from "./History";
 const Prototype = () => {
   return (
     <div className="flex">
-      <div className="hidden md:block md:w-24 lg:w-56">
+      <div className="w-full h-16 fixed z-10 bottom-0 left-0 bg-white md:static md:h-auto md:w-24 lg:w-56">
         <Navbar />
       </div>
       <div className="flex flex-col w-full min-h-screen">
