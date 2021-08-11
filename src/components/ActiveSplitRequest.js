@@ -14,6 +14,7 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
   const [creatorName, setCreatorName] = useState(null);
   const [splitters, setSplitters] = useState([]);
   const { authUser } = useContext(AuthUserContext);
+
   const modalOverlayStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     backdropFilter: "blur(1px)",

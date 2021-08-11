@@ -1,78 +1,50 @@
-import React from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
+import React, { useEffect, useContext, useState } from "react";
 import "react-circular-progressbar/dist/styles.css";
-
-const percentage = 66;
+import AuthUserContext from "../context/AuthUserContext";
+import { getBills } from "../firebase/firebase.utils";
+import PendingBill from "./PendingBill";
 
 const PendingBills = () => {
+  const { authUser } = useContext(AuthUserContext);
+  const [pendingBills, setPendingBills] = useState([]);
+
+  useEffect(() => {
+    if (authUser) {
+      //Added onSnapshot to get realtime updates
+      getBills(authUser.email).onSnapshot((snapshot) => {
+        const newBills = snapshot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        });
+        setPendingBills(() => {
+          //Filtering bills for the users which contain paid as false
+          return newBills
+            .filter((bill) => {
+              const mySplit = bill.users.find(
+                (user) => user.email === authUser.email
+              );
+              return !mySplit.paid;
+            })
+            .slice(0, 3);
+        });
+      });
+    }
+  }, [authUser]);
+
+  useEffect(() => {
+    console.log(pendingBills);
+  }, [pendingBills]);
+
   return (
     <div className="max-w-sm  px-2  mx-auto">
       <h1 className="text-xl font-medium text-gray-700">Pending Bills</h1>
 
       <div className="border p-4 mt-5 rounded-lg flex flex-col">
-        <div className="flex justify-between items-center pb-4">
-          <div>
-            <h1 className="font-bold">Grill Cafe</h1>
-            <p>Total payment $380.60</p>
-
-            <div className="flex mt-2">
-              <img
-                className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-                src="https://i.pravatar.cc/300?img=1"
-                alt=""
-              />
-              <img
-                className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-                src="https://i.pravatar.cc/300?img=2"
-                alt=""
-              />
-              <img
-                className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-                src="https://i.pravatar.cc/300?img=3"
-                alt=""
-              />
-            </div>
-          </div>
-          <div>
-            <CircularProgressbar
-              className="w-14 h-14 font-bold"
-              value={percentage}
-              text={`${percentage}%`}
-            />
-          </div>
-        </div>
-
-        <div className="flex justify-between items-center pt-4">
-          <div>
-            <h1 className="font-bold">Pizzeria</h1>
-            <p>Total payment $4440.00</p>
-
-            <div className="flex">
-              <img
-                className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-                src="https://i.pravatar.cc/300?img=4"
-                alt=""
-              />
-              <img
-                className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-                src="https://i.pravatar.cc/300?img=5"
-                alt=""
-              />
-              <img
-                className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
-                src="https://i.pravatar.cc/300?img=6"
-                alt=""
-              />
-            </div>
-          </div>
-          <div>
-            <CircularProgressbar
-              className="w-14 h-14 font-bold"
-              value={percentage}
-              text={`${percentage}%`}
-            />
-          </div>
-        </div>
+        {pendingBills?.map((pendingBill) => {
+          return <PendingBill {...pendingBill} />;
+        })}
       </div>
     </div>
   );

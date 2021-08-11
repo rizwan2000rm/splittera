@@ -45,7 +45,10 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 };
 
 export const getBills = (email) => {
-  return db.collection("bills").where("userEmails", "array-contains", email);
+  return db
+    .collection("bills")
+    .orderBy("createdAt", "desc")
+    .where("userEmails", "array-contains", email);
 };
 
 export const addBill = async (vendor, amount, userEmails, authUser) => {
