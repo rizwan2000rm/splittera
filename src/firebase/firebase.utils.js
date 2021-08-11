@@ -92,4 +92,8 @@ export const getUserById = async (creatorId) => {
   return db.collection("users").doc(creatorId).get();
 };
 
+export const getUsersByEmail = (...emails) => {
+  return db.collection("users").where("email", "in", [...emails]);
+};
+
 export default firebase;

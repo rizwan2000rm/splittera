@@ -5,11 +5,13 @@ import {
   payBill,
   declineBill,
   getUserById,
+  getUsersByEmail,
 } from "../firebase/firebase.utils";
 import { ToastContainer, toast } from "react-toastify";
 const ActiveSplitRequest = ({ activeRequest, history }) => {
   const [mySplit, setMySplit] = useState(null);
   const [creatorName, setCreatorName] = useState(null);
+  const [splitters, setSplitters] = useState([]);
   const { authUser } = useContext(AuthUserContext);
 
   useEffect(() => {
@@ -26,6 +28,16 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
         }
         return user.data().displayName;
       });
+    });
+
+    getUsersByEmail(...activeRequest.userEmails).onSnapshot((snapshot) => {
+      const newSplitters = snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      setSplitters(newSplitters);
     });
   }, [activeRequest, authUser.uid]);
 
@@ -143,6 +155,21 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
               </button>
             </>
           )}
+        </div>
+        <div className="text-xl font-bold px-8 pt-4 text-gray-600">
+          Split With
+        </div>
+        <div className="avatar-list flex px-8 pt-4">
+          {splitters &&
+            splitters.map((splitter) => {
+              return (
+                <img
+                  className="h-12 w-12 rounded-full  border-white border-2 -mr-3 shadow"
+                  src={splitter.photoURL}
+                  alt="avatar"
+                />
+              );
+            })}
         </div>
       </div>
     </div>
