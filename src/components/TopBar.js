@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import {
   signInWithGoogle,
   auth,
-  createUserProfileDocument,
+  createUserProfileDocument
 } from "../firebase/firebase.utils";
 
 const TopBar = () => {
@@ -42,7 +42,7 @@ const TopBar = () => {
 
   const modalOverlayStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    backdropFilter: "blur(1px)",
+    backdropFilter: "blur(1px)"
   };
 
   return (
@@ -56,9 +56,9 @@ const TopBar = () => {
         <input
           type="text"
           placeholder="Search"
-          className="w-full pr-10 px-4 h-10 bg-gray-100 rounded-xl shadow-sm focus:outline-none focus:opacity-80 text-sm"
+          className="hidden md:block w-full pr-10 px-4 h-10 bg-gray-100 rounded-xl shadow-sm focus:outline-none focus:opacity-80 text-sm"
         />
-        <span className="h-full fill-current text-gray-600 mr-2 flex items-center absolute right-0 top-0">
+        <span className="hidden md:flex items-center h-full fill-current text-gray-600 mr-2 absolute right-0 top-0">
           <ion-icon name="search"></ion-icon>
         </span>
       </div>
@@ -76,7 +76,7 @@ const TopBar = () => {
                   setUser(user);
                   setAuthUser(user);
                   createUserProfileDocument(user, {
-                    photoURL: user.photoURL,
+                    photoURL: user.photoURL
                   });
                 })
               )
