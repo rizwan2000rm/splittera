@@ -11,13 +11,14 @@ import {
   House,
   PlusCircle,
   ListDashes,
-  CheckSquareOffset
+  CheckSquareOffset,
 } from "phosphor-react";
 import "react-toastify/dist/ReactToastify.css";
+import SplitteraLogo from "../assets/logos/SplitteraLogo";
 
 const modalOverlayStyle = {
   backgroundColor: "rgba(0, 0, 0, 0.5)",
-  backdropFilter: "blur(1px)"
+  backdropFilter: "blur(1px)",
 };
 
 const Navbar = () => {
@@ -47,7 +48,7 @@ const Navbar = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined
+        progress: undefined,
       });
       return;
     }
@@ -59,7 +60,7 @@ const Navbar = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined
+        progress: undefined,
       });
       return;
     }
@@ -72,7 +73,7 @@ const Navbar = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined
+        progress: undefined,
       });
       return;
     }
@@ -91,7 +92,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined
+          progress: undefined,
         });
       })
       .catch((err) => {
@@ -102,7 +103,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined
+          progress: undefined,
         });
       });
   };
@@ -113,7 +114,7 @@ const Navbar = () => {
         .map((doc) => {
           return {
             value: doc.data().email,
-            label: doc.data().email
+            label: doc.data().email,
           };
         })
         //filtering the users which do not match the current authenticated user
@@ -128,26 +129,24 @@ const Navbar = () => {
   const defaultOptions = [
     {
       value: "rizwan2000.rm@gmail.com",
-      label: "rizwan2000.rm@gmail.com"
+      label: "rizwan2000.rm@gmail.com",
     },
     {
       value: "saistashaikh2019@gmail.com",
-      label: "saistashaikh2019@gmail.com"
+      label: "saistashaikh2019@gmail.com",
     },
     {
       value: "salik.ansari6@gmail.com",
-      label: "salik.ansari6@gmail.com"
-    }
+      label: "salik.ansari6@gmail.com",
+    },
   ];
 
   return (
     <>
       <div className="flex justify-around md:justify-start md:flex-col items-center w-full h-full py-4 shadow-xl">
-        <img
-          className="hidden md:block w-1/3 mx-auto mb-3 lg:mb-6"
-          src="/images/logo.svg"
-          alt=""
-        />
+        <div className="hidden md:block  mx-auto mb-3 lg:mb-6">
+          <SplitteraLogo height={50} width={"auto"} />
+        </div>
         <NavLink
           exact
           to="/prototype/"

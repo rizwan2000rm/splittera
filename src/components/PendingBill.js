@@ -27,7 +27,7 @@ const PendingBill = (props) => {
   }, [props.userEmails, props.users]);
 
   return (
-    <div className="flex justify-between items-center pb-4" key={props.id}>
+    <div className="flex justify-between items-center pb-4">
       <div>
         <h1 className="font-bold">{props.name}</h1>
         <p>Total payment ${props.totalAmount}</p>

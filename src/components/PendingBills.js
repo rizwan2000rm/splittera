@@ -1,9 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import "react-circular-progressbar/dist/styles.css";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import AuthUserContext from "../context/AuthUserContext";
 import { getBills } from "../firebase/firebase.utils";
 import PendingBill from "./PendingBill";
-
+import "../animation.css";
 const PendingBills = () => {
   const { authUser } = useContext(AuthUserContext);
   const [pendingBills, setPendingBills] = useState([]);
@@ -42,9 +43,19 @@ const PendingBills = () => {
       <h1 className="text-xl font-medium text-gray-700">Pending Bills</h1>
 
       <div className="border p-4 mt-5 rounded-lg flex flex-col">
-        {pendingBills?.map((pendingBill) => {
-          return <PendingBill {...pendingBill} />;
-        })}
+        <TransitionGroup component={null}>
+          {pendingBills?.map((pendingBill) => {
+            return (
+              <CSSTransition
+                key={pendingBill.id}
+                timeout={500}
+                classNames="list-item"
+              >
+                <PendingBill {...pendingBill} />
+              </CSSTransition>
+            );
+          })}
+        </TransitionGroup>
       </div>
     </div>
   );
