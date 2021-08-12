@@ -258,6 +258,17 @@ const Navbar = () => {
           <ion-icon name="home"></ion-icon>
           <span className="hidden lg:block">History</span>
         </NavLink>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     </>
   );
