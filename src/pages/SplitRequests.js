@@ -5,6 +5,7 @@ import ActiveSplitRequest from "../components/ActiveSplitRequest";
 import AuthUserContext from "../context/AuthUserContext";
 import "../animation.css";
 import { getBills } from "../firebase/firebase.utils";
+import Avatar from "react-avatar";
 
 const SplitRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -20,7 +21,7 @@ const SplitRequests = () => {
         const newBills = snapshot.docs.map((doc) => {
           return {
             id: doc.id,
-            ...doc.data(),
+            ...doc.data()
           };
         });
         setRequests(() => {
@@ -37,14 +38,6 @@ const SplitRequests = () => {
     }
   }, [authUser]);
 
-  useEffect(() => {
-    setActiveRequest(requests[0]);
-  }, [requests]);
-
-  useEffect(() => {
-    console.log(requests);
-  }, [requests]);
-
   if (loading) {
     return (
       <div className="flex justify-center items-center h-full w-full">
@@ -54,8 +47,8 @@ const SplitRequests = () => {
   }
 
   return (
-    <div className="requests m-1 mb-4 flex h-full border border-gray-300">
-      <div className="req-list w-72 lg:w-96 h-full pb-12 overflow-scroll flex flex-col border-r border-gray-300">
+    <div className="requests mb-4 flex w-full h-full">
+      <div className="req-list w-full md:w-72 lg:w-96 h-full pb-12 overflow-y-auto flex flex-col flex-none border-r border-gray-300">
         <TransitionGroup component={null}>
           {requests.length !== 0 ? (
             requests.map((request) => (
@@ -70,14 +63,14 @@ const SplitRequests = () => {
                     setActiveRequest(request);
                   }}
                 >
-                  <div
-                    className="flex justify-center items-center font-medium text-2xl bg-purple-600 text-white rounded-full h-12 w-12"
-                    alt=""
-                  >
-                    {request.name && request.name[0].toUpperCase()}
-                  </div>
+                  <Avatar
+                    name={request.name && request.name.toUpperCase()}
+                    size={60}
+                    round={true}
+                    maxInitials={2}
+                  />
                   <div className="req-details p-2">
-                    <div className="name text-gray-600 text-xl font-bold mb-2">
+                    <div className="name text-gray-500 text-xl font-bold mb-2 truncate overflow-ellipsis overflow-hidden">
                       {request.name}
                     </div>
                     <div className="date text-sm">12th January 2021</div>
@@ -90,9 +83,21 @@ const SplitRequests = () => {
           )}
         </TransitionGroup>
       </div>
-      <div className="active-split ">
-        {activeRequest && <ActiveSplitRequest activeRequest={activeRequest} />}
-      </div>
+      {activeRequest ? (
+        <div className="active-split bg-white absolute left-1/2 top-1/2 w-80 max-w-lg shadow-xl border rounded-lg mx-auto md:w-full md:static md:rounded-none md:shadow-none md:border-none">
+          <ActiveSplitRequest
+            activeRequest={activeRequest}
+            setActiveRequest={setActiveRequest}
+          />
+        </div>
+      ) : (
+        <div className="hidden md:flex flex-col justify-center items-center h-full w-full">
+          <img className="w-1/2" src="/images/art.jpg" alt="" />
+          <div className="font-bold text-gray-500 text-xl">
+            Click on a bill to see details
+          </div>
+        </div>
+      )}
     </div>
   );
 };

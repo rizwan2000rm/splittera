@@ -3,6 +3,7 @@ import { ClipLoader } from "react-spinners";
 import ActiveSplitRequest from "../components/ActiveSplitRequest";
 import AuthUserContext from "../context/AuthUserContext";
 import { getBills } from "../firebase/firebase.utils";
+import Avatar from "react-avatar";
 
 const History = () => {
   const [requests, setRequests] = useState([]);
@@ -34,10 +35,6 @@ const History = () => {
     }
   }, [authUser]);
 
-  useEffect(() => {
-    setActiveRequest(requests[0]);
-  }, [requests]);
-
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full w-full">
@@ -47,8 +44,8 @@ const History = () => {
   }
 
   return (
-    <div className="requests flex m-6">
-      <div className="req-list w-72 flex flex-col border border-gray-300">
+    <div className="requests mb-4 flex w-full h-full">
+      <div className="req-list w-full md:w-72 lg:w-96 h-full pb-12 overflow-y-auto flex flex-col flex-none border-r border-gray-300">
         {requests.length !== 0 ? (
           requests.map((request) => (
             <div
@@ -57,12 +54,12 @@ const History = () => {
                 setActiveRequest(request);
               }}
             >
-              <div
-                className="flex justify-center items-center font-medium text-2xl bg-purple-600 text-white rounded-full h-12 w-12"
-                alt=""
-              >
-                {request.name && request.name[0].toUpperCase()}
-              </div>
+              <Avatar
+                name={request.name && request.name.toUpperCase()}
+                size={60}
+                round={true}
+                maxInitials={2}
+              />
               <div className="req-details p-2">
                 <div className="name text-gray-600 text-xl font-bold mb-2">
                   {request.name}
@@ -75,11 +72,27 @@ const History = () => {
           <h1 className="text-xl font-medium m-5">History Empty</h1>
         )}
       </div>
-      <div className="active-split ">
+      {/* <div className="active-split ">
         {activeRequest && (
           <ActiveSplitRequest history={true} activeRequest={activeRequest} />
         )}
-      </div>
+      </div> */}
+      {activeRequest ? (
+        <div className="active-split bg-white absolute left-1/2 top-1/2 w-80 max-w-lg shadow-xl border rounded-lg mx-auto md:w-full md:static md:rounded-none md:shadow-none md:border-none">
+          <ActiveSplitRequest
+            activeRequest={activeRequest}
+            setActiveRequest={setActiveRequest}
+            history={true}
+          />
+        </div>
+      ) : (
+        <div className="hidden md:flex flex-col justify-center items-center h-full w-full">
+          <img className="w-1/2" src="/images/art.jpg" alt="" />
+          <div className="font-bold text-gray-500 text-xl">
+            Click on a bill to see details
+          </div>
+        </div>
+      )}
     </div>
   );
 };

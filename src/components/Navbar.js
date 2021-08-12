@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Popup from "reactjs-popup";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import AsyncSelect from "react-select/async";
 
 import { addBill, db } from "../firebase/firebase.utils";
@@ -11,14 +11,14 @@ import {
   House,
   PlusCircle,
   ListDashes,
-  CheckSquareOffset,
+  CheckSquareOffset
 } from "phosphor-react";
 import "react-toastify/dist/ReactToastify.css";
 import SplitteraLogo from "../assets/logos/SplitteraLogo";
 
 const modalOverlayStyle = {
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
-  backdropFilter: "blur(1px)",
+  backgroundColor: "rgba(0, 0, 0, 0.2)",
+  backdropFilter: "blur(1px)"
 };
 
 const Navbar = () => {
@@ -48,7 +48,7 @@ const Navbar = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
       return;
     }
@@ -60,7 +60,7 @@ const Navbar = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
       return;
     }
@@ -73,7 +73,7 @@ const Navbar = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
       return;
     }
@@ -92,7 +92,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
+          progress: undefined
         });
       })
       .catch((err) => {
@@ -103,7 +103,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
+          progress: undefined
         });
       });
   };
@@ -114,7 +114,7 @@ const Navbar = () => {
         .map((doc) => {
           return {
             value: doc.data().email,
-            label: doc.data().email,
+            label: doc.data().email
           };
         })
         //filtering the users which do not match the current authenticated user
@@ -129,16 +129,16 @@ const Navbar = () => {
   const defaultOptions = [
     {
       value: "rizwan2000.rm@gmail.com",
-      label: "rizwan2000.rm@gmail.com",
+      label: "rizwan2000.rm@gmail.com"
     },
     {
       value: "saistashaikh2019@gmail.com",
-      label: "saistashaikh2019@gmail.com",
+      label: "saistashaikh2019@gmail.com"
     },
     {
       value: "salik.ansari6@gmail.com",
-      label: "salik.ansari6@gmail.com",
-    },
+      label: "salik.ansari6@gmail.com"
+    }
   ];
 
   return (
@@ -226,17 +226,6 @@ const Navbar = () => {
                   </button>
                 </form>
               </div>
-              <ToastContainer
-                position="bottom-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
             </div>
           )}
         </Popup>
@@ -257,17 +246,6 @@ const Navbar = () => {
           <span className="hidden lg:block">History</span>
         </NavLink>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 };

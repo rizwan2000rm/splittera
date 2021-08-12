@@ -47,3 +47,13 @@ ion-icon {
   border-radius: 40px;
   border: 1px solid #eee;
 }
+
+.active-split {
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 768px) {
+  .active-split {
+    transform: translate(0%, 0%);
+  }
+}

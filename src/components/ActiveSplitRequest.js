@@ -5,11 +5,13 @@ import {
   payBill,
   declineBill,
   getUserById,
-  getUsersByEmail,
+  getUsersByEmail
 } from "../firebase/firebase.utils";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Popup from "reactjs-popup";
-const ActiveSplitRequest = ({ activeRequest, history }) => {
+import Avatar from "react-avatar";
+
+const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
   const [mySplit, setMySplit] = useState(null);
   const [creatorName, setCreatorName] = useState(null);
   const [splitters, setSplitters] = useState([]);
@@ -17,7 +19,7 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
 
   const modalOverlayStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    backdropFilter: "blur(1px)",
+    backdropFilter: "blur(1px)"
   };
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
       const newSplitters = snapshot.docs.map((doc) => {
         return {
           id: doc.id,
-          ...doc.data(),
+          ...doc.data()
         };
       });
       setSplitters(newSplitters);
@@ -50,25 +52,21 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
   }, [activeRequest, authUser.uid]);
 
   return (
-    <div className=" max-w-sm">
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="rounded-lg px-2 py-8 mt-5">
-        <div
-          className="w-32 h-32  rounded-full flex justify-center items-center mx-auto text-5xl font-medium text-white bg-purple-500  p-1"
-          src="https://as2.ftcdn.net/v2/jpg/02/88/84/21/1000_F_288842168_nhgjfMO0vtARTs6obR3i9bfdRIuaSL56.jpg"
-          alt=""
+    <>
+      <div className="rounded-lg px-1 py-4 mt-2 sm:px-1 sm:py-8 sm:mt-5">
+        <button
+          className="absolute right-0 top-0 h-12 w-12 text-3xl text-red-300 hover:opacity-80 md:hidden"
+          onClick={() => setActiveRequest(null)}
         >
-          {activeRequest.name && activeRequest.name[0].toUpperCase()}
+          &times;
+        </button>
+        <div className="flex justify-center items-center">
+          <Avatar
+            name={activeRequest.name && activeRequest.name.toUpperCase()}
+            size={80}
+            round={true}
+            maxInitials={2}
+          />
         </div>
         <h1 className="font-bold text-base text-center pt-6">
           Hey {auth.currentUser && auth.currentUser.displayName}
@@ -105,7 +103,7 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
                         ...user,
                         amount:
                           activeRequest.totalAmount /
-                          (activeRequest.users.length - 1),
+                          (activeRequest.users.length - 1)
                       };
                     });
 
@@ -118,12 +116,12 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
-                        progress: undefined,
+                        progress: undefined
                       });
                     }
                   );
                 }}
-                className="px-6 py-3 w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80"
+                className="px-6 py-3 w-full sm:w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80"
               >
                 Decline
               </button>
@@ -138,7 +136,7 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
                     }
                     return {
                       ...user,
-                      paid: true,
+                      paid: true
                     };
                   });
 
@@ -146,20 +144,20 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
                   payBill(updatedUsers, activeRequest.id)
                     .then(() => {
                       toast.success("Payment Successful", {
-                        position: "top-right",
+                        position: "bottom-right",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
-                        progress: undefined,
+                        progress: undefined
                       });
                     })
                     .catch((err) => {
                       console.log("error");
                     });
                 }}
-                className="px-6 py-3 w-1/2 rounded-lg bg-blue-400 text-white text-sm hover:opacity-80"
+                className="px-6 py-3 w-full sm:w-1/2 rounded-lg bg-blue-400 text-white text-sm hover:opacity-80"
               >
                 Accept
               </button>
@@ -192,17 +190,17 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
                       >
                         &times;
                       </button>
-                      <div className="p-24 flex gap-12">
+                      <div className="p-6 sm:p-12 md:p-24 flex flex-col items-center md:flex-row gap:4 md:gap-12">
                         <img
-                          className="rounded-full"
+                          className="w-1/2 rounded-full"
                           src={splitter.photoURL}
                           alt=""
                         />
                         <div className="my-2">
-                          <div className="font-bold text-xl text-gray-600">
+                          <div className="font-bold text-center text-xl text-gray-600">
                             {splitter.displayName}
                           </div>
-                          <div className="font-bold text-gray-600">
+                          <div className="font-bold text-center text-gray-600">
                             {splitter.email}
                           </div>
                         </div>
@@ -214,7 +212,7 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
             })}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

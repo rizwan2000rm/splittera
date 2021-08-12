@@ -5,22 +5,41 @@ import Home from "./pages/Home";
 import Prototype from "./pages/Prototype";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { ConfigProvider } from "react-avatar";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <AuthUserContextProvider>
       <Router>
-        <div className="App">
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <ProtectedRoute path="/prototype" component={Prototype} />
-            <Route path="/login">
-              <Login />
-            </Route>
-          </Switch>
-        </div>
+        <ConfigProvider
+          colors={["#9CA3AF", "#F87171", "#FBBF24", "#059669", "#60A5FA"]}
+        >
+          <>
+            <div className="App">
+              <Switch>
+                <Route path="/" exact>
+                  <Home />
+                </Route>
+                <ProtectedRoute path="/prototype" component={Prototype} />
+                <Route path="/login">
+                  <Login />
+                </Route>
+              </Switch>
+            </div>
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+          </>
+        </ConfigProvider>
       </Router>
     </AuthUserContextProvider>
   );
