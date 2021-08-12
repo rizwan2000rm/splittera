@@ -7,6 +7,7 @@ import {
   auth,
   createUserProfileDocument
 } from "../firebase/firebase.utils";
+import { ClipLoader } from "react-spinners";
 
 const TopBar = () => {
   const { setAuthUser } = useContext(AuthUserContext);
@@ -67,7 +68,9 @@ const TopBar = () => {
           <ion-icon name="notifications-outline"></ion-icon>
         </span>
         {loading ? (
-          <div className="text-black">Loading...</div>
+          <div className="text-black">
+            <ClipLoader />
+          </div>
         ) : user === null ? (
           <button
             onClick={() =>

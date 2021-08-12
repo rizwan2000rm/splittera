@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { ClipLoader } from "react-spinners";
 import ActiveSplitRequest from "../components/ActiveSplitRequest";
 import AuthUserContext from "../context/AuthUserContext";
 import { getBills } from "../firebase/firebase.utils";
@@ -7,6 +8,8 @@ const SplitRequests = () => {
   const [requests, setRequests] = useState([]);
   const [activeRequest, setActiveRequest] = useState(null);
   const { authUser } = useContext(AuthUserContext);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (authUser) {
@@ -27,6 +30,7 @@ const SplitRequests = () => {
             return !mySplit.paid;
           });
         });
+        setLoading(false);
       });
     }
   }, [authUser]);
@@ -38,6 +42,14 @@ const SplitRequests = () => {
   useEffect(() => {
     console.log(requests);
   }, [requests]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-full w-full">
+        <ClipLoader size={100} />;
+      </div>
+    );
+  }
 
   return (
     <div className="requests flex m-6">

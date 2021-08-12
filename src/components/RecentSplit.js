@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import AuthUserContext from "../context/AuthUserContext";
 import { getBills, getUsersByEmail } from "../firebase/firebase.utils";
-
+import { ClipLoader } from "react-spinners";
 const RecentSplit = () => {
   const { authUser } = useContext(AuthUserContext);
   const [recentSplit, setRecentSplit] = useState(null);
@@ -79,7 +79,9 @@ const RecentSplit = () => {
             </div>
           </>
         ) : (
-          <div>Loading....</div>
+          <div>
+            <ClipLoader />
+          </div>
         )}
       </div>
     </div>
