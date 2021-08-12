@@ -123,17 +123,17 @@ const TopBar = () => {
                     >
                       &times;
                     </button>
-                    <div className="p-24 flex gap-12">
+                    <div className="p-6 sm:p-12 md:p-24 flex flex-col items-center md:flex-row gap:4 md:gap-12">
                       <img
-                        className="rounded-full"
+                        className="w-1/2 rounded-full"
                         src={user.photoURL}
                         alt=""
                       />
                       <div className="my-2">
-                        <div className="font-bold text-xl text-gray-600">
+                        <div className="font-bold text-center text-xl text-gray-600">
                           {user.displayName}
                         </div>
-                        <div className="font-bold text-gray-600">
+                        <div className="font-bold text-center text-gray-600">
                           {user.email}
                         </div>
                       </div>

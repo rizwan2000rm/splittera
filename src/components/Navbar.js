@@ -11,12 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const modalOverlayStyle = {
   backgroundColor: "rgba(0, 0, 0, 0.5)",
-  backdropFilter: "blur(1px)",
+  backdropFilter: "blur(1px)"
 };
 
 const Navbar = () => {
   const [vendor, setVendor] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState();
   const { authUser } = useContext(AuthUserContext);
 
   // REACT SELECT
@@ -25,61 +25,48 @@ const Navbar = () => {
 
   const handleChange = (value, actionMeta) => {
     setValue(value);
-    console.log(value);
   };
 
   const handleInputChange = (inputValue) => {
     setInputValue(inputValue);
   };
 
-  // const handleKeyDown = (event) => {
-  //   if (!inputValue) return;
-  //   // eslint-disable-next-line default-case
-  //   switch (event.key) {
-  //     case "Enter":
-  //     case "Tab":
-  //       setInputValue("");
-  //       setValue([...value, createOption(inputValue)]);
-  //       event.preventDefault();
-  //   }
-  // };
-
   const handleSubmit = (e, close) => {
     e.preventDefault();
     if (!vendor) {
       toast.warn("Vendor Name is empty", {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
       return;
     }
     if (amount <= 0) {
       toast.warn("Enter suitable amount", {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
       return;
     }
 
     if (value.length === 0) {
       toast.warn("Enter atleast 1 user to split with", {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        progress: undefined
       });
       return;
     }
@@ -98,7 +85,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
+          progress: undefined
         });
       })
       .catch((err) => {
@@ -109,7 +96,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
+          progress: undefined
         });
       });
   };
@@ -120,7 +107,7 @@ const Navbar = () => {
         .map((doc) => {
           return {
             value: doc.data().email,
-            label: doc.data().email,
+            label: doc.data().email
           };
         })
         //filtering the users which do not match the current authenticated user
@@ -135,23 +122,23 @@ const Navbar = () => {
   const defaultOptions = [
     {
       value: "rizwan2000.rm@gmail.com",
-      label: "rizwan2000.rm@gmail.com",
+      label: "rizwan2000.rm@gmail.com"
     },
     {
       value: "saistashaikh2019@gmail.com",
-      label: "saistashaikh2019@gmail.com",
+      label: "saistashaikh2019@gmail.com"
     },
     {
       value: "salik.ansari6@gmail.com",
-      label: "salik.ansari6@gmail.com",
-    },
+      label: "salik.ansari6@gmail.com"
+    }
   ];
 
   return (
     <>
-      <div className="flex justify-between md:justify-start md:flex-col items-center w-full h-full py-4 shadow-xl">
+      <div className="flex justify-around md:justify-start md:flex-col items-center w-full h-full py-4 shadow-xl">
         <img
-          className="w-1/3 mx-auto mb-3 lg:mb-6"
+          className="hidden md:block w-1/3 mx-auto mb-3 lg:mb-6"
           src="/images/logo.svg"
           alt=""
         />
@@ -178,8 +165,14 @@ const Navbar = () => {
           position="center center"
         >
           {(close) => (
-            <div className="border bg-white px-12 py-8">
-              <div className="w-96">
+            <div className="border bg-white px-4 py-6 lg:px-12 lg:py-8">
+              <button
+                className="absolute right-0 top-0 h-12 w-12 text-3xl text-red-300 hover:opacity-80"
+                onClick={close}
+              >
+                &times;
+              </button>
+              <div className="w-64 sm:w-72 md:w-96">
                 <div className="text-gray-600 font-bold mb-6">
                   <h1>Create New Bill</h1>
                 </div>
@@ -258,18 +251,18 @@ const Navbar = () => {
           <ion-icon name="home"></ion-icon>
           <span className="hidden lg:block">History</span>
         </NavLink>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
