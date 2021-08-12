@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const modalOverlayStyle = {
   backgroundColor: "rgba(0, 0, 0, 0.5)",
-  backdropFilter: "blur(1px)"
+  backdropFilter: "blur(1px)",
 };
 
 const Navbar = () => {
@@ -24,16 +24,17 @@ const Navbar = () => {
   const [inputValue, setInputValue] = useState(false);
 
   const components = {
-    DropdownIndicator: null
+    DropdownIndicator: null,
   };
 
   const createOption = (label) => ({
     label,
-    value: label
+    value: label,
   });
 
   const handleChange = (value, actionMeta) => {
     setValue(value);
+    console.log(value);
   };
 
   const handleInputChange = (inputValue) => {
@@ -53,7 +54,8 @@ const Navbar = () => {
   };
 
   const handleSubmit = () => {
-    addBill(vendor, amount, value, authUser)
+    const userEmails = value.map((email) => email.value);
+    addBill(vendor, amount, userEmails, authUser)
       .then(() => {
         setVendor("");
         setValue([]);
@@ -65,7 +67,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined
+          progress: undefined,
         });
       })
       .catch((err) => {
@@ -76,7 +78,7 @@ const Navbar = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined
+          progress: undefined,
         });
       });
   };
