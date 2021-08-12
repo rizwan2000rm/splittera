@@ -42,7 +42,7 @@ const RecentSplit = () => {
             <div className="flex justify-between">
               <div className="flex vendor items-center">
                 <div className="h-6 w-6 flex justify-center items-center bg-purple-600 text-white rounded-full text-sm mr-2">
-                  {recentSplit.name[0].toUpperCase()}
+                  {recentSplit.name && recentSplit.name[0].toUpperCase()}
                 </div>{" "}
                 <span className="font-medium text-gray-600">
                   {recentSplit.name}
@@ -66,7 +66,7 @@ const RecentSplit = () => {
             </div>
             <div className="flex-col items-center md:flex-row flex mt-5 justify-between">
               <div className="h-32 w-32 flex justify-center items-center bg-purple-600 text-white rounded-full text-5xl">
-                {recentSplit.name[0].toUpperCase()}
+                {recentSplit.name && recentSplit.name[0].toUpperCase()}
               </div>
               <div className="avatar-grid mt-5 md:mt-0 grid grid-cols-3 gap-3 md:gap-1 place-items-center">
                 {splitters.map((splitter) => {

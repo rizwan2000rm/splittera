@@ -66,7 +66,7 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
           src="https://as2.ftcdn.net/v2/jpg/02/88/84/21/1000_F_288842168_nhgjfMO0vtARTs6obR3i9bfdRIuaSL56.jpg"
           alt=""
         >
-          {activeRequest.name[0].toUpperCase()}
+          {activeRequest.name && activeRequest.name[0].toUpperCase()}
         </div>
         <h1 className="font-bold text-base text-center pt-6">
           Hey {auth.currentUser && auth.currentUser.displayName}

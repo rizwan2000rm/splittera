@@ -66,7 +66,7 @@ const SplitRequests = () => {
                 className="flex justify-center items-center font-medium text-2xl bg-purple-600 text-white rounded-full h-12 w-12"
                 alt=""
               >
-                {request.name[0].toUpperCase()}
+                {request.name && request.name[0].toUpperCase()}
               </div>
               <div className="req-details p-2">
                 <div className="name text-gray-600 text-xl font-bold mb-2">
