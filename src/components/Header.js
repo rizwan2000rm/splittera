@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 // import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import SplitteraLogo from "../assets/logos/SplitteraLogo";
 
 export default function Example() {
   return (
@@ -31,12 +32,7 @@ export default function Example() {
                       <div className="flex items-center justify-between w-full md:w-auto">
                         <a href="/">
                           <span className="sr-only">Workflow</span>
-                          <img
-                            className="h-8 w-auto sm:h-10"
-                            // src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                            src="/images/logo.svg"
-                            alt=""
-                          />
+                          <SplitteraLogo width={250} height={100} />
                         </a>
                       </div>
                     </div>
