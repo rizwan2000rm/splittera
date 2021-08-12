@@ -57,11 +57,12 @@ const History = () => {
                 setActiveRequest(request);
               }}
             >
-              <img
-                src="https://as2.ftcdn.net/v2/jpg/02/88/84/21/1000_F_288842168_nhgjfMO0vtARTs6obR3i9bfdRIuaSL56.jpg"
-                className="h-12 w-12"
+              <div
+                className="flex justify-center items-center font-medium text-2xl bg-purple-600 text-white rounded-full h-12 w-12"
                 alt=""
-              />
+              >
+                {request.name[0].toUpperCase()}
+              </div>
               <div className="req-details p-2">
                 <div className="name text-gray-600 text-xl font-bold mb-2">
                   {request.name}
