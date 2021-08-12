@@ -44,7 +44,46 @@ const Navbar = () => {
   //   }
   // };
 
-  const handleSubmit = (close) => {
+  const handleSubmit = (e, close) => {
+    e.preventDefault();
+    if (!vendor) {
+      toast.warn("Vendor Name is empty", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+    if (amount <= 0) {
+      toast.warn("Enter suitable amount", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
+    if (value.length === 0) {
+      toast.warn("Enter atleast 1 user to split with", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     const userEmails = value.map((email) => email.value);
     addBill(vendor, amount, userEmails, authUser)
       .then(() => {
@@ -144,7 +183,10 @@ const Navbar = () => {
                 <div className="text-gray-600 font-bold mb-6">
                   <h1>Create New Bill</h1>
                 </div>
-                <div className="flex flex-col">
+                <form
+                  onSubmit={(e) => handleSubmit(e, close)}
+                  className="flex flex-col"
+                >
                   <input
                     type="text"
                     value={vendor}
@@ -181,13 +223,10 @@ const Navbar = () => {
                   <button
                     type="submit"
                     className="px-6 py-2 w-full mx-auto rounded-lg bg-blue-400 text-white text-sm hover:opacity-80"
-                    onClick={() => {
-                      handleSubmit(close);
-                    }}
                   >
                     Split Now
                   </button>
-                </div>
+                </form>
               </div>
             </div>
           )}
