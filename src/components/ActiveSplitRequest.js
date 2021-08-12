@@ -22,9 +22,11 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
 
   useEffect(() => {
     setMySplit(() => {
-      return activeRequest.users.find((user) => {
-        return user.email === auth.currentUser.email;
-      }).amount;
+      return activeRequest.users
+        .find((user) => {
+          return user.email === auth.currentUser.email;
+        })
+        .amount.toFixed(2);
     });
 
     getUserById(activeRequest.creatorId).then((user) => {
