@@ -61,11 +61,13 @@ const ActiveSplitRequest = ({ activeRequest, history }) => {
         pauseOnHover
       />
       <div className="rounded-lg px-2 py-8 mt-5">
-        <img
-          className="w-32 h-32 object-cover rounded-full mx-auto p-1 border-2 border-yellow-400"
+        <div
+          className="w-32 h-32  rounded-full flex justify-center items-center mx-auto text-5xl font-medium text-white bg-purple-500  p-1"
           src="https://as2.ftcdn.net/v2/jpg/02/88/84/21/1000_F_288842168_nhgjfMO0vtARTs6obR3i9bfdRIuaSL56.jpg"
           alt=""
-        />
+        >
+          {activeRequest.name[0].toUpperCase()}
+        </div>
         <h1 className="font-bold text-base text-center pt-6">
           Hey {auth.currentUser && auth.currentUser.displayName}
         </h1>
