@@ -7,6 +7,12 @@ import AsyncSelect from "react-select/async";
 import { addBill, db } from "../firebase/firebase.utils";
 import AuthUserContext from "../context/AuthUserContext";
 
+import {
+  House,
+  PlusCircle,
+  ListDashes,
+  CheckSquareOffset
+} from "phosphor-react";
 import "react-toastify/dist/ReactToastify.css";
 
 const modalOverlayStyle = {
@@ -146,17 +152,17 @@ const Navbar = () => {
           exact
           to="/prototype/"
           activeClassName="bg-red-300 text-white"
-          className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
+          className="flex items-center flex-nowrap lg:w-36 gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
         >
-          <ion-icon name="home"></ion-icon>
+          <House size={22} />
           <span className="hidden lg:block">Dashboard</span>
         </NavLink>
         <Popup
           trigger={
             <button>
-              <div className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold">
-                <ion-icon name="home"></ion-icon>
-                <span className="hidden lg:block">Create Bill</span>
+              <div className="flex items-center flex-nowrap lg:w-36 gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold">
+                <PlusCircle size={22} />
+                <span className="hidden lg:block">New Bill</span>
               </div>
             </button>
           }
@@ -238,17 +244,17 @@ const Navbar = () => {
         <NavLink
           to="/prototype/splitreqs"
           activeClassName="bg-red-300 text-white"
-          className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
+          className="flex items-center flex-nowrap lg:w-36 gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
         >
-          <ion-icon name="home"></ion-icon>
+          <ListDashes size={22} />
           <span className="hidden lg:block"> Requests</span>
         </NavLink>
         <NavLink
           to="/prototype/history"
           activeClassName="bg-red-300 text-white"
-          className="flex gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
+          className="flex items-center flex-nowrap lg:w-36 gap-2 m-3 px-4 py-2 transition-all rounded-lg font-bold cursor-pointer hover:bg-red-300 hover:text-white hover:font-bold"
         >
-          <ion-icon name="home"></ion-icon>
+          <CheckSquareOffset size={22} />
           <span className="hidden lg:block">History</span>
         </NavLink>
       </div>

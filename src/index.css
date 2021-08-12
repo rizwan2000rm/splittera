@@ -24,3 +24,26 @@ code {
 ion-icon {
   font-size: 22px;
 }
+
+/* SCROLLBAR */
+* {
+  /* firefox */
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 40px;
+  border: 1px solid #eee;
+}

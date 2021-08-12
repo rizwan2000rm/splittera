@@ -18,7 +18,7 @@ const SplitRequests = () => {
         const newBills = snapshot.docs.map((doc) => {
           return {
             id: doc.id,
-            ...doc.data(),
+            ...doc.data()
           };
         });
         setRequests(() => {
@@ -52,8 +52,8 @@ const SplitRequests = () => {
   }
 
   return (
-    <div className="requests flex m-6">
-      <div className="req-list w-72 flex flex-col border border-gray-300">
+    <div className="requests m-1 mb-4 flex h-full border border-gray-300">
+      <div className="req-list w-72 lg:w-96 h-full pb-12 overflow-scroll flex flex-col border-r border-gray-300">
         {requests.length !== 0 ? (
           requests.map((request) => (
             <div

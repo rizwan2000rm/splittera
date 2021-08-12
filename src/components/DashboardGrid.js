@@ -8,7 +8,7 @@ import { Participate } from "./Participate";
 
 const DashboardGrid = () => {
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-5">
+    <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-5 overflow-scroll">
       <div className="order-1 p-2">
         <SplitWith />
       </div>

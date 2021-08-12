@@ -12,7 +12,7 @@ const Prototype = () => {
       <div className="w-full h-16 fixed z-10 bottom-0 left-0 bg-white md:static md:h-auto md:w-24 lg:w-56">
         <Navbar />
       </div>
-      <div className="flex flex-col w-full min-h-screen">
+      <div className="flex flex-col w-full max-h-screen overflow-hidden">
         <TopBar />
         <Switch>
           <Route path="/prototype/" exact component={DashboardGrid} />
