@@ -228,6 +228,17 @@ const Navbar = () => {
                   </button>
                 </form>
               </div>
+              <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
             </div>
           )}
         </Popup>
@@ -248,17 +259,6 @@ const Navbar = () => {
           <span className="hidden lg:block">History</span>
         </NavLink>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 };
