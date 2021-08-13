@@ -5,7 +5,7 @@ import {
   payBill,
   declineBill,
   getUserById,
-  getUsersByEmail
+  getUsersByEmail,
 } from "../firebase/firebase.utils";
 import { toast } from "react-toastify";
 import Popup from "reactjs-popup";
@@ -19,7 +19,7 @@ const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
 
   const modalOverlayStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    backdropFilter: "blur(1px)"
+    backdropFilter: "blur(1px)",
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
       const newSplitters = snapshot.docs.map((doc) => {
         return {
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         };
       });
       setSplitters(newSplitters);
@@ -103,7 +103,7 @@ const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
                         ...user,
                         amount:
                           activeRequest.totalAmount /
-                          (activeRequest.users.length - 1)
+                          (activeRequest.users.length - 1),
                       };
                     });
 
@@ -116,10 +116,11 @@ const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
-                        progress: undefined
+                        progress: undefined,
                       });
                     }
                   );
+                  setActiveRequest(null);
                 }}
                 className="px-6 py-3 w-full sm:w-1/2 rounded-lg bg-red-400 text-white text-sm hover:opacity-80"
               >
@@ -136,7 +137,7 @@ const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
                     }
                     return {
                       ...user,
-                      paid: true
+                      paid: true,
                     };
                   });
 
@@ -150,8 +151,9 @@ const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
-                        progress: undefined
+                        progress: undefined,
                       });
+                      setActiveRequest(null);
                     })
                     .catch((err) => {
                       console.log("error");

@@ -21,7 +21,7 @@ const SplitRequests = () => {
         const newBills = snapshot.docs.map((doc) => {
           return {
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           };
         });
         setRequests(() => {
@@ -73,7 +73,19 @@ const SplitRequests = () => {
                     <div className="name text-gray-500 text-xl font-bold mb-2 truncate overflow-ellipsis overflow-hidden">
                       {request.name}
                     </div>
-                    <div className="date text-sm">12th January 2021</div>
+                    <div className="date text-sm">
+                      {new Date(
+                        request.createdAt.seconds * 1000
+                      ).toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      }) +
+                        ", " +
+                        new Date(
+                          request.createdAt.seconds * 1000
+                        ).toLocaleTimeString("en-IN")}
+                    </div>
                   </div>
                 </div>
               </CSSTransition>
