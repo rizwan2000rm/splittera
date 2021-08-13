@@ -74,17 +74,22 @@ const SplitRequests = () => {
                       {request.name}
                     </div>
                     <div className="date text-sm">
-                      {new Date(
-                        request.createdAt.seconds * 1000
-                      ).toLocaleDateString("en-GB", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      }) +
-                        ", " +
-                        new Date(
-                          request.createdAt.seconds * 1000
-                        ).toLocaleTimeString("en-IN")}
+                      <span className="date">
+                        {request.createdAt
+                          .toDate()
+                          .toLocaleDateString("en-IN", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                      </span>
+                      <span className="time ml-2 font-medium">
+                        {request.createdAt
+                          .toDate()
+                          .toLocaleTimeString("en-IN", {
+                            timeStyle: "short",
+                          })}
+                      </span>
                     </div>
                   </div>
                 </div>
