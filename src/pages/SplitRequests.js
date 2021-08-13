@@ -6,6 +6,7 @@ import AuthUserContext from "../context/AuthUserContext";
 import "../animation.css";
 import { getBills } from "../firebase/firebase.utils";
 import Avatar from "react-avatar";
+import { Participate } from "../components/Participate";
 
 const SplitRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -101,11 +102,12 @@ const SplitRequests = () => {
         </TransitionGroup>
       </div>
       {activeRequest ? (
-        <div className="active-split bg-white absolute left-1/2 top-1/2 w-80 max-w-lg shadow-xl border rounded-lg mx-auto md:w-full md:static md:rounded-none md:shadow-none md:border-none">
+        <div className="active-split overflow-y-auto  2xl:flex bg-white absolute left-1/2 top-1/2  justify-around shadow-xl border rounded-lg mx-auto md:w-full md:static md:rounded-none md:shadow-none md:border-none">
           <ActiveSplitRequest
             activeRequest={activeRequest}
             setActiveRequest={setActiveRequest}
           />
+          <Participate activeRequest={activeRequest} />
         </div>
       ) : (
         <div className="hidden md:flex flex-col justify-center items-center h-full w-full">

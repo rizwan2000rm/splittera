@@ -44,23 +44,20 @@ const DashboardGrid = () => {
         <SplitWith />
       </div> */}
       <div className="p-2 order-4 w-full">
+        <PendingBills />
         <RecentSplit />
       </div>
-      <div className="order-5 p-2">
-        <NearByFriends />
-      </div>
-      <div className="p-2 order-2">
+      <div className="order-5 p-2">{/* <NearByFriends /> */}</div>
+      {/* <div className="p-2 order-2">
         <Participate />
-      </div>
+      </div> */}
       <div className="order-3 w-full h-full p-2">
         <SplitBillReq
           activeRequest={activeRequest}
           setActiveRequest={setActiveRequest}
         />
       </div>
-      <div className="order-6 p-2">
-        <PendingBills />
-      </div>
+      <div className="order-6 p-2"></div>
     </div>
   );
 };

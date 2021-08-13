@@ -43,7 +43,7 @@ const RecentSplit = () => {
   }, [recentSplit]);
 
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="max-w-sm mx-auto mt-10">
       <div className="text-xl font-medium text-gray-700">Recent Split</div>
       <div className="border rounded-xl border-gray-300 p-6 mt-5">
         {recentSplit ? (

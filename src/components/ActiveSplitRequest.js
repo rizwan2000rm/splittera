@@ -53,9 +53,9 @@ const ActiveSplitRequest = ({ activeRequest, setActiveRequest, history }) => {
 
   return (
     <>
-      <div className="rounded-lg px-1 py-4 mt-2 sm:px-1 sm:py-8 sm:mt-5">
+      <div className="rounded-lg px-1 py-4 mt-2 sm:px-1 md:max-w-lg md:mx-auto sm:py-8 sm:mt-5">
         <button
-          className="absolute right-0 top-0 h-12 w-12 text-3xl text-red-300 hover:opacity-80 md:hidden"
+          className="absolute  right-0 top-0 h-12 w-12 text-3xl text-red-300 hover:opacity-80 md:hidden"
           onClick={() => setActiveRequest(null)}
         >
           &times;
