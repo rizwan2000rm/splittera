@@ -9,13 +9,22 @@ const RecentSplit = () => {
 
   useEffect(() => {
     if (authUser) {
-      getBills(authUser.email)
-        .limit(1)
-        .onSnapshot((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            setRecentSplit(doc.data());
-          });
+      getBills(authUser.email).onSnapshot((snapshot) => {
+        const bills = snapshot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
         });
+        setRecentSplit(
+          bills.find((bill) => {
+            const mySplit = bill.users.find(
+              (user) => user.email === authUser.email
+            );
+            return mySplit.paid;
+          })
+        );
+      });
     }
   }, [authUser]);
 

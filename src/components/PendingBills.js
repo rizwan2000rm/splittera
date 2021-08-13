@@ -41,7 +41,6 @@ const PendingBills = () => {
   return (
     <div className="max-w-sm  px-2  mx-auto">
       <h1 className="text-xl font-medium text-gray-700">Pending Bills</h1>
-
       <div className="border p-4 mt-5 rounded-lg flex flex-col">
         <TransitionGroup component={null}>
           {pendingBills?.map((pendingBill) => {
